@@ -1,11 +1,15 @@
 {
   "scripts": {
-    "api": "node ratingsAPI.js"
+    "lint": "standard",
+    "api": "node ratingsAPI.js",
+    "build": "webpack",
+    "watch": "npm run build -- --watch"
   },
   "dependencies": {
     "axios": "0.16.1",
     "babel-plugin-dynamic-import-webpack": "1.0.1",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-preset-es2015": "^6.24.1",
     "babel-register": "6.24.1",
     "compression": "1.6.2",
     "cors": "2.8.3",
@@ -27,9 +31,9 @@
     "webpack-hot-middleware": "2.18.0"
   },
   "devDependencies": {
-    "babel-core": "6.24.1",
+    "babel-core": "^6.25.0",
     "babel-eslint": "7.2.3",
-    "babel-loader": "7.0.0",
+    "babel-loader": "^7.1.1",
     "babel-plugin-dynamic-import-node": "1.0.2",
     "babel-plugin-syntax-dynamic-import": "6.18.0",
     "babel-plugin-transform-class-properties": "6.24.1",
