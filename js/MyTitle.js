@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 
 var MyTitle = React.createClass({
@@ -5,7 +6,7 @@ var MyTitle = React.createClass({
     const style = {color: this.props.color}
     return (
       <div>
-        <h1 style= { style }>
+        <h1 style={style}>
           {this.props.title}
         </h1>
       </div>
@@ -14,3 +15,4 @@ var MyTitle = React.createClass({
 })
 
 export default MyTitle
+*/
