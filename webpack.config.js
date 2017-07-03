@@ -29,6 +29,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        // enforce: 'pre',
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
         include: path.resolve(__dirname, 'js'),
         test: /\.js$/,
         loader: 'babel-loader'
