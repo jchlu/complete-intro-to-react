@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router'
 import ShowCard from './ShowCard'
-import preload from '../public/data.json'
-
+import Header from './Header'
+const {arrayOf, shape, string} = React.PropTypes
 const Search = React.createClass({
+  propTypes: {
+    shows: arrayOf(shape({
+      title: string,
+      description: string
+    }))
+  },
   getInitialState () {
     return {
-      searchTerm: 'this is the default string'
+      searchTerm: ''
     }
   },
   handleSearchTermChange (event) {
@@ -15,16 +21,22 @@ const Search = React.createClass({
   render () {
     return (
       <div className='search'>
-        <header>
-          <h1>{this.state.searchTerm}</h1>
-          <input onChange={this.handleSearchTermChange} type='text' value={this.state.searchTerm} placeholder='Search' />
-        </header>
+        <Header
+          showSearch
+          searchTerm={this.state.searchTerm}
+          handleSearchTermChange={this.handleSearchTermChange}
+        />
         <div>
-          {preload.shows.map((show) => {
-            return (
-              <ShowCard key={show.imdbID} {...show} />
-            )
-          })}
+          {this.props.shows
+            .filter((show) => {
+              return `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            })
+            .map((show) => {
+              return (
+                <ShowCard key={show.imdbID} {...show} />
+              )
+            })
+          }
         </div>
         <Link to='/'>Home</Link>
       </div>
