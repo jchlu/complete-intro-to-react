@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Header from './Header'
+import { apikey, userkey, username } from '../tvdb.config'
 
 const {shape, string} = React.PropTypes
 
@@ -17,21 +18,25 @@ const Details = React.createClass({
   },
   getInitialState () {
     return {
-      omdbData: {}
+      tvdbData: {
+        'apikey': apikey,
+        'username': username,
+        'userkey': userkey
+      }
     }
   },
   componentDidMount () {
     axios.get(`https://www.omdbapi.com/?i=${this.props.show.imdbID}`)
       .then((response) => {
-        this.setState({omdbData: response.data})
+        this.setState({tvdbData: response.data})
       })
       .catch((error) => console.error('axios error', error))
   },
   render () {
     const {title, description, year, poster, trailer} = this.props.show
     let rating
-    if (this.state.omdbData.imdbRating) {
-      rating = <h3>{this.state.omdbData.imdbRating}</h3>
+    if (this.state.tvdbData.imdbRating) {
+      rating = <h3>{this.state.tvdbData.imdbRating}</h3>
     } else {
       rating = <img src='/public/img/loading.png' alt='loading spinner' />
     }
